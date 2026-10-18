@@ -2,4 +2,9 @@ node_modules/
 dist-electron/
 subscription-monitor
 subscriptions.json
+subscriptions.json.migrated
+*.db
+*.db-journal
+*.sqlite
+*.sqlite-journal
 *.AppImage

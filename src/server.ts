@@ -1,18 +1,47 @@
-import { serve } from "bun";
-
 const PORT = 3000;
-const DATA_FILE = "./subscriptions.json";
+import { serve } from "bun";
+import { Database } from "bun:sqlite";
+import { homedir } from "os";
+import { dirname, join } from "path";
+import { chmodSync, existsSync, mkdirSync, readFileSync, renameSync } from "fs";
 
-async function loadSubs() {
-  try {
-    const file = Bun.file(DATA_FILE);
-    if (await file.exists()) return await file.json();
-  } catch {}
-  return [];
+// Secrets live in a SQLite DB under the user's home dir (never in the repo).
+// Override with FLUX_DB=/path/to/flux.db (used by tests).
+const DB_PATH = process.env.FLUX_DB || join(homedir(), ".flux", "flux.db");
+
+mkdirSync(dirname(DB_PATH), { recursive: true, mode: 0o700 });
+const db = new Database(DB_PATH, { create: true });
+try { chmodSync(DB_PATH, 0o600); } catch {}
+db.run("CREATE TABLE IF NOT EXISTS subscriptions (id TEXT PRIMARY KEY, provider TEXT NOT NULL, label TEXT NOT NULL, api_key TEXT NOT NULL, created_at TEXT NOT NULL)");
+
+// One-time migration from legacy ./subscriptions.json, then archive it.
+try {
+  if (existsSync("./subscriptions.json")) {
+    const count = (db.query("SELECT COUNT(*) AS n FROM subscriptions").get() as { n: number }).n;
+    if (count === 0) {
+      const legacy = JSON.parse(readFileSync("./subscriptions.json", "utf8"));
+      const ins = db.prepare("INSERT OR IGNORE INTO subscriptions (id, provider, label, api_key, created_at) VALUES (?,?,?,?,?)");
+      for (const s of legacy) ins.run(s.id, s.provider, s.label || s.provider, s.apiKey, s.createdAt || new Date().toISOString());
+    }
+    renameSync("./subscriptions.json", "./subscriptions.json.migrated");
+  }
+} catch {}
+
+interface SubRow { id: string; provider: string; label: string; api_key: string; created_at: string; }
+
+function toPublic(row: { id: string; provider: string; label: string; created_at: string }) {
+  return { id: row.id, provider: row.provider, label: row.label, createdAt: row.created_at };
 }
 
-async function saveSubs(subs) {
-  await Bun.write(DATA_FILE, JSON.stringify(subs, null, 2));
+// Public list: keys are NEVER returned to the frontend.
+function loadSubs() {
+  const rows = db.query("SELECT id, provider, label, created_at FROM subscriptions").all() as { id: string; provider: string; label: string; created_at: string }[];
+  return rows.map(toPublic);
+}
+
+// Full row including the key, for server-side upstream calls only.
+function getSub(id: string) {
+  return db.query("SELECT id, provider, label, api_key, created_at FROM subscriptions WHERE id = ?").get(id) as SubRow | null;
 }
 
 async function fetchOpencodeGoUsage(apiKey) {
@@ -67,30 +96,27 @@ serve({
 
     if (url.pathname === "/api/subscriptions" && req.method === "POST") {
       const body = await req.json();
-      const subs = await loadSubs();
-      const sub = { id: crypto.randomUUID(), provider: body.provider, label: body.label || body.provider, apiKey: body.apiKey, createdAt: new Date().toISOString() };
-      subs.push(sub);
-      await saveSubs(subs);
+      if (!body.apiKey) return Response.json({ error: "apiKey required" }, { status: 400 });
+      const sub = { id: crypto.randomUUID(), provider: body.provider, label: body.label || body.provider, createdAt: new Date().toISOString() };
+      db.run("INSERT INTO subscriptions (id, provider, label, api_key, created_at) VALUES (?,?,?,?,?)", [sub.id, sub.provider, sub.label, body.apiKey, sub.createdAt]);
       return Response.json(sub);
     }
 
     if (url.pathname.startsWith("/api/subscriptions/") && req.method === "DELETE") {
-      const id = url.pathname.split("/").pop();
-      const subs = await loadSubs();
-      await saveSubs(subs.filter(s => s.id !== id));
+      const id = url.pathname.split("/").pop()!;
+      db.run("DELETE FROM subscriptions WHERE id = ?", [id]);
       return Response.json({ ok: true });
     }
 
     if (url.pathname.startsWith("/api/usage/") && req.method === "GET") {
-      const id = url.pathname.split("/").pop();
-      const subs = await loadSubs();
-      const sub = subs.find(s => s.id === id);
+      const id = url.pathname.split("/").pop()!;
+      const sub = getSub(id);
       if (!sub) return Response.json({ error: "not found" }, { status: 404 });
       try {
         if (sub.provider === "opencode-go") {
-          return Response.json({ provider: "opencode-go", usage: await fetchOpencodeGoUsage(sub.apiKey) });
+          return Response.json({ provider: "opencode-go", usage: await fetchOpencodeGoUsage(sub.api_key) });
         } else {
-          return Response.json({ provider: "commandcode", usage: await fetchCommandcodeUsage(sub.apiKey) });
+          return Response.json({ provider: "commandcode", usage: await fetchCommandcodeUsage(sub.api_key) });
         }
       } catch (e) {
         return Response.json({ error: e.message }, { status: 500 });
