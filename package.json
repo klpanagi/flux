@@ -5,7 +5,7 @@
   "scripts": {
     "start": "bun run src/server.ts",
     "dev": "bun --watch run src/server.ts",
-    "electron:dev": "electron .",
+    "electron:dev": "electron . --ozone-platform=x11 --disable-gpu --disable-features=VaapiVideoDecoder",
     "electron:build": "electron-builder --dir",
     "electron:dist": "electron-builder",
     "electron:dist:mac": "electron-builder --mac",
@@ -41,7 +41,8 @@
           "target": "AppImage"
         }
       ],
-      "category": "Development"
+    "category": "Development",
+    "executableArgs": ["--ozone-platform=x11", "--disable-gpu", "--disable-features=VaapiVideoDecoder"]
     }
   },
   "devDependencies": {

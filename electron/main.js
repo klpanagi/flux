@@ -2,6 +2,11 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const http = require('http')
 
+// Fix Wayland/GPU compatibility issues on Linux
+app.disableHardwareAcceleration()
+app.commandLine.appendSwitch('ozone-platform', 'x11')
+app.commandLine.appendSwitch('disable-features', 'VaapiVideoDecoder')
+app.commandLine.appendSwitch('disable-gpu')
 const PORT = 3000
 
 let httpServer = null
