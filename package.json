@@ -1,0 +1,51 @@
+{
+  "name": "subscription-monitor",
+  "version": "1.0.0",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "bun run src/server.ts",
+    "dev": "bun --watch run src/server.ts",
+    "electron:dev": "electron .",
+    "electron:build": "electron-builder --dir",
+    "electron:dist": "electron-builder",
+    "electron:dist:mac": "electron-builder --mac",
+    "electron:dist:linux": "electron-builder --linux"
+  },
+  "build": {
+    "appId": "io.subscription.monitor",
+    "productName": "Subscription Monitor",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "src/**/*",
+      "public/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage"
+        }
+      ],
+      "category": "Development"
+    }
+  },
+  "devDependencies": {
+    "electron": "^41.10.7",
+    "electron-builder": "^25.1.8"
+  }
+}
