@@ -8,3 +8,6 @@ subscriptions.json.migrated
 *.sqlite
 *.sqlite-journal
 *.AppImage
+
+# Matrixx tooling artifacts
+.matrixx/

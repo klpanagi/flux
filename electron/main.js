@@ -7,7 +7,7 @@ app.disableHardwareAcceleration()
 app.commandLine.appendSwitch('ozone-platform', 'x11')
 app.commandLine.appendSwitch('disable-features', 'VaapiVideoDecoder')
 app.commandLine.appendSwitch('disable-gpu')
-const PORT = 3000
+const PORT = Number(process.env.FLUX_PORT) || 4000
 
 let httpServer = null
 let mainWindow = null

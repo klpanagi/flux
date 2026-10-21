@@ -1,4 +1,4 @@
-const PORT = 3000;
+const PORT = Number(process.env.FLUX_PORT) || 4000;
 import { serve } from "bun";
 import { Database } from "bun:sqlite";
 import { homedir } from "os";
