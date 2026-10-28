@@ -115,3 +115,14 @@ MIT © klpanagi
 ---
 
 _Built with ⚡ by a developer who got tired of checking usage dashboards manually._
+
+## 🧭 UI Direction Notes (S2/S3 — decided)
+
+- **S2 (component framework) — rejected for now.** The frontend stays **vanilla JS + CSS, no framework migration**.
+  Rationale: single-file app (~400 lines), zero build step, Bun serves static files directly, Electron
+  window loads instantly. A framework adds toolchain weight with no proportional payoff at this size.
+  Revisit only if tab/route count or shared-component duplication grows materially.
+- **S3 (Tailwind) — rejected for now.** Styling stays **hand-written CSS with semantic design tokens**
+  (`styles.css` `:root`, incl. `[data-theme="light"]`). Rationale: full offline support (no CDN),
+  tiny payload, and tokens already cover theming/responsive needs. Revisit only if utility-class
+  velocity clearly outweighs the offline/build cost.
