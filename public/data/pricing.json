@@ -1,0 +1,642 @@
+{
+ "deepseek-v4.1-flash": {
+  "i": 0.15,
+  "o": 0.6,
+  "c": 0.003
+ },
+ "deepseek-v4-pro": {
+  "i": 0.66,
+  "o": 1.98,
+  "c": 0.022
+ },
+ "glm-5.1": {
+  "i": 1.4,
+  "o": 4.4,
+  "c": 0.26
+ },
+ "glm-5.2": {
+  "i": 1.4,
+  "o": 4.4,
+  "c": 0.26
+ },
+ "glm-5.3": {
+  "i": 1.4,
+  "o": 4.4,
+  "c": 0.26
+ },
+ "grok-4.6": {
+  "i": 2,
+  "o": 6,
+  "c": 0.5
+ },
+ "grok-4.7": {
+  "i": 2,
+  "o": 6,
+  "c": 0.5
+ },
+ "glm-5.3-flash": {
+  "i": 0.15,
+  "o": 0.5,
+  "c": 0.03
+ },
+ "gpt-5.6-luna": {
+  "i": 0.2,
+  "o": 1.2,
+  "c": 0.02
+ },
+ "gpt-6-luna": {
+  "i": 0.1,
+  "o": 0.5,
+  "c": 0.01
+ },
+ "claude-haiku-5-5": {
+  "i": 0.1,
+  "o": 0.5,
+  "c": 0.01
+ },
+ "hy3": {
+  "i": 0.14,
+  "o": 0.58,
+  "c": 0.035
+ },
+ "hy4-preview": {
+  "i": 0.834,
+  "o": 2.501,
+  "c": 0.042
+ },
+ "kimi-k2.6": {
+  "i": 0.95,
+  "o": 4,
+  "c": 0.16
+ },
+ "kimi-k2.7-code": {
+  "i": 0.95,
+  "o": 4,
+  "c": 0.19
+ },
+ "kimi-k3": {
+  "i": 3,
+  "o": 15,
+  "c": 0.3
+ },
+ "mimo-v2.5": {
+  "i": 0.14,
+  "o": 0.28,
+  "c": 0.0028
+ },
+ "mimo-v2.5-pro": {
+  "i": 0.435,
+  "o": 0.87,
+  "c": 0.003625
+ },
+ "mimo-v2.6-flash": {
+  "i": 0.14,
+  "o": 0.28,
+  "c": 0.0028
+ },
+ "mimo-v2.6-pro": {
+  "i": 0.435,
+  "o": 0.87,
+  "c": 0.003625
+ },
+ "minimax-m2.5": {
+  "i": 0.3,
+  "o": 1.2,
+  "c": 0.06
+ },
+ "minimax-m3": {
+  "i": 0.3,
+  "o": 1.2,
+  "c": 0.06
+ },
+ "muse-spark-1.2-contributor": {
+  "i": 0.1,
+  "o": 0.2,
+  "c": 0.002
+ },
+ "muse-spark-1.3-contributor": {
+  "i": 0.1,
+  "o": 0.2,
+  "c": 0.002
+ },
+ "qwen3.8-max": {
+  "i": 2,
+  "o": 6,
+  "c": 0.25
+ },
+ "qwen3.8-flash": {
+  "i": 0.15,
+  "o": 0.47,
+  "c": 0.016
+ },
+ "qwen3.7-plus": {
+  "i": 0.4,
+  "o": 1.6,
+  "c": 0.04
+ },
+ "deepseek-v4-flash": {
+  "i": 0.15,
+  "o": 0.6,
+  "c": 0.003
+ },
+ "deepseek-v4-flash-vision-exp": {
+  "i": 0.15,
+  "o": 0.6,
+  "c": 0.003
+ },
+ "longcat-2.0": {
+  "i": 0.3,
+  "o": 1.2,
+  "c": 0.006
+ },
+ "space-bunny": {
+  "i": 0.15,
+  "o": 0.6,
+  "c": 0.03
+ },
+ "step-5-preview": {
+  "i": 1,
+  "o": 2.7,
+  "c": 0.1
+ },
+ "longcat-2.5-preview-free": {
+  "i": 0,
+  "o": 0,
+  "c": 0
+ },
+ "step-5-preview-free": {
+  "i": 0,
+  "o": 0,
+  "c": 0
+ },
+ "beam-free": {
+  "i": 0,
+  "o": 0,
+  "c": 0
+ },
+ "cat-jam-free": {
+  "i": 0,
+  "o": 0,
+  "c": 0
+ },
+ "omen-alpha": {
+  "i": 0,
+  "o": 0,
+  "c": 0
+ },
+ "claude-sonnet-5-5": {
+  "i": 2,
+  "o": 10,
+  "c": 0.1
+ },
+ "claude-sonnet-5": {
+  "i": 2,
+  "o": 10,
+  "c": 0.2
+ },
+ "claude-sonnet-4-6": {
+  "i": 3,
+  "o": 15,
+  "c": 0.3
+ },
+ "claude-fable-5-1": {
+  "i": 10,
+  "o": 50,
+  "c": 0.25
+ },
+ "claude-fable-5": {
+  "i": 10,
+  "o": 50,
+  "c": 1
+ },
+ "claude-opus-5-5": {
+  "i": 4,
+  "o": 20,
+  "c": 0.2
+ },
+ "claude-opus-5": {
+  "i": 5,
+  "o": 25,
+  "c": 0.5
+ },
+ "claude-opus-4-8": {
+  "i": 5,
+  "o": 25,
+  "c": 0.5
+ },
+ "claude-opus-4-7": {
+  "i": 5,
+  "o": 25,
+  "c": 0.5
+ },
+ "claude-haiku-4-5-20251001": {
+  "i": 1,
+  "o": 5,
+  "c": 0.1
+ },
+ "gpt-6-astra": {
+  "i": 10,
+  "o": 50,
+  "c": 1
+ },
+ "gpt-6.1-sol": {
+  "i": 2,
+  "o": 10,
+  "c": 0.2
+ },
+ "gpt-6-sol": {
+  "i": 2,
+  "o": 10,
+  "c": 0.2
+ },
+ "gpt-5.6-sol": {
+  "i": 4,
+  "o": 20,
+  "c": 0.4
+ },
+ "gpt-5.6-terra": {
+  "i": 2,
+  "o": 12,
+  "c": 0.2
+ },
+ "gpt-5.5": {
+  "i": 5,
+  "o": 30,
+  "c": 0.5
+ },
+ "gpt-5.4": {
+  "i": 2.5,
+  "o": 15,
+  "c": 0.25
+ },
+ "gpt-5.3-codex": {
+  "i": 1.75,
+  "o": 14,
+  "c": 0.175
+ },
+ "gpt-5.4-mini": {
+  "i": 0.75,
+  "o": 4.5,
+  "c": 0.075
+ },
+ "deepseek/deepseek-v4-pro": {
+  "i": 0.66,
+  "o": 1.98,
+  "c": 0.022
+ },
+ "deepseek/deepseek-v4-flash": {
+  "i": 0.15,
+  "o": 0.6,
+  "c": 0.003
+ },
+ "deepseek/deepseek-v4-flash-vision-exp": {
+  "i": 0.15,
+  "o": 0.6,
+  "c": 0.003
+ },
+ "deepseek/deepseek-v4-flash-fast": {
+  "i": 0.28,
+  "o": 0.56,
+  "c": 0.07
+ },
+ "deepseek/deepseek-v4.1-flash": {
+  "i": 0.15,
+  "o": 0.6,
+  "c": 0.003
+ },
+ "deepseek/deepseek-v4.1-flash-fast": {
+  "i": 0.32,
+  "o": 1.16,
+  "c": 0.07
+ },
+ "moonshotai/Kimi-K3": {
+  "i": 3,
+  "o": 15,
+  "c": 0.3
+ },
+ "moonshotai/Kimi-K2.7-Code": {
+  "i": 0.95,
+  "o": 4,
+  "c": 0.19
+ },
+ "moonshotai/Kimi-K2.7-Code-Highspeed": {
+  "i": 0.95,
+  "o": 4,
+  "c": 0.19
+ },
+ "moonshotai/Kimi-K2.6": {
+  "i": 0.95,
+  "o": 4,
+  "c": 0.16
+ },
+ "moonshotai/Kimi-K2.5": {
+  "i": 0.6,
+  "o": 3,
+  "c": 0.1
+ },
+ "z-ai/glm-5.3-flash": {
+  "i": 0.15,
+  "o": 0.5,
+  "c": 0.03
+ },
+ "z-ai/glm-5.3-flashx": {
+  "i": 0.15,
+  "o": 0.5,
+  "c": 0.03
+ },
+ "zai-org/GLM-5.3": {
+  "i": 1.4,
+  "o": 4.4,
+  "c": 0.26
+ },
+ "zai-org/GLM-5.2": {
+  "i": 1.4,
+  "o": 4.4,
+  "c": 0.26
+ },
+ "zai-org/GLM-5.2-Fast": {
+  "i": 3,
+  "o": 10.25,
+  "c": 0.5
+ },
+ "zai-org/GLM-5.1": {
+  "i": 1.4,
+  "o": 4.4,
+  "c": 0.26
+ },
+ "zai-org/GLM-5": {
+  "i": 1,
+  "o": 3.2,
+  "c": 0.2
+ },
+ "MiniMaxAI/MiniMax-M3": {
+  "i": 0.3,
+  "o": 1.2,
+  "c": 0.06
+ },
+ "MiniMaxAI/MiniMax-M2.7": {
+  "i": 0.3,
+  "o": 1.2,
+  "c": 0.06
+ },
+ "MiniMaxAI/MiniMax-M2.5": {
+  "i": 0.3,
+  "o": 1.2,
+  "c": 0.06
+ },
+ "xiaomi/mimo-v2.6-pro": {
+  "i": 0.435,
+  "o": 0.87,
+  "c": 0.003625
+ },
+ "xiaomi/mimo-v2.6-pro-ultraspeed": {
+  "i": 0.435,
+  "o": 0.87,
+  "c": 0.003625
+ },
+ "xiaomi/mimo-v2.6-flash": {
+  "i": 0.14,
+  "o": 0.28,
+  "c": 0.0028
+ },
+ "xiaomi/mimo-v2.5-pro": {
+  "i": 0.435,
+  "o": 0.87,
+  "c": 0.003625
+ },
+ "xiaomi/mimo-v2.5": {
+  "i": 0.14,
+  "o": 0.28,
+  "c": 0.0028
+ },
+ "Qwen/Qwen3.8-Omni-Flash": {
+  "i": 0.15,
+  "o": 0.47,
+  "c": 0.016
+ },
+ "Qwen/Qwen3.8-Max-Prime": {
+  "i": 2,
+  "o": 6,
+  "c": 0.25
+ },
+ "Qwen/Qwen3.8-Max-0902": {
+  "i": 2,
+  "o": 6,
+  "c": 0.25
+ },
+ "Qwen/Qwen3.8-Max": {
+  "i": 2,
+  "o": 6,
+  "c": 0.25
+ },
+ "Qwen/Qwen3.8-27B": {
+  "i": 0.4,
+  "o": 3,
+  "c": 0.04
+ },
+ "Qwen/Qwen3.8-Flash": {
+  "i": 0.15,
+  "o": 0.47,
+  "c": 0.016
+ },
+ "Qwen/Qwen3.7-Max": {
+  "i": 2.5,
+  "o": 7.5,
+  "c": 0.5
+ },
+ "Qwen/Qwen3.7-Plus": {
+  "i": 0.4,
+  "o": 1.6,
+  "c": 0.04
+ },
+ "Qwen/Qwen3.7-Flash": {
+  "i": 0.15,
+  "o": 0.47,
+  "c": 0.016
+ },
+ "Qwen/Qwen3.6-Max-Preview": {
+  "i": 2.5,
+  "o": 7.5,
+  "c": 0.5
+ },
+ "Qwen/Qwen3.6-Plus": {
+  "i": 0.5,
+  "o": 3,
+  "c": 0.05
+ },
+ "meituan/LongCat-2.0": {
+  "i": 0.3,
+  "o": 1.2,
+  "c": 0.006
+ },
+ "stepfun/Step-5-Preview": {
+  "i": 1,
+  "o": 2.7,
+  "c": 0.1
+ },
+ "stepfun/Step-3.7-Flash": {
+  "i": 0.15,
+  "o": 0.47,
+  "c": 0.016
+ },
+ "stepfun/Step-3.5-Flash": {
+  "i": 0.09,
+  "o": 0.3,
+  "c": 0.02
+ },
+ "tencent/hy3-paid": {
+  "i": 0.14,
+  "o": 0.58,
+  "c": 0.035
+ },
+ "tencent/hy4-preview": {
+  "i": 0.834,
+  "o": 2.501,
+  "c": 0.042
+ },
+ "google/gemini-4-argon": {
+  "i": 4,
+  "o": 20,
+  "c": 0.2
+ },
+ "google/gemini-3.8-flash": {
+  "i": 1.5,
+  "o": 7.5,
+  "c": 0.15
+ },
+ "google/gemini-3.7-flash": {
+  "i": 1.5,
+  "o": 7.5,
+  "c": 0.15
+ },
+ "google/gemini-3.6-flash": {
+  "i": 1.5,
+  "o": 7.5,
+  "c": 0.15
+ },
+ "google/gemini-3.5-flash": {
+  "i": 1.5,
+  "o": 9,
+  "c": 0.15
+ },
+ "google/gemini-3.5-flash-lite": {
+  "i": 0.3,
+  "o": 2.5,
+  "c": 0.03
+ },
+ "google/gemini-3.1-flash-lite": {
+  "i": 0.3,
+  "o": 2.5,
+  "c": 0.03
+ },
+ "sakana/fugu-ultra": {
+  "i": 10,
+  "o": 50,
+  "c": 1
+ },
+ "nvidia/nemotron-3-ultra-550b-a55b": {
+  "i": 0.2,
+  "o": 0.6,
+  "c": 0.02
+ },
+ "nvidia/nemotron-3.5-super-vl": {
+  "i": 0.2,
+  "o": 0.6,
+  "c": 0.02
+ },
+ "thinkingmachines/inkling": {
+  "i": 0.042,
+  "o": 0,
+  "c": 0
+ },
+ "thinkingmachines/inkling-small": {
+  "i": 0.042,
+  "o": 0,
+  "c": 0
+ },
+ "stealth/glyph-cluster:free": {
+  "i": 0,
+  "o": 0,
+  "c": 0
+ },
+ "stealth/cat-jam:free": {
+  "i": 0,
+  "o": 0,
+  "c": 0
+ },
+ "reflection/beam:free": {
+  "i": 0,
+  "o": 0,
+  "c": 0
+ },
+ "poolside/laguna-s-2.1-free": {
+  "i": 0,
+  "o": 0,
+  "c": 0
+ },
+ "inclusionai/ling-3.1-flash": {
+  "i": 0.3,
+  "o": 0.9,
+  "c": 0.06
+ },
+ "meta/muse-spark-1.1": {
+  "i": 1.25,
+  "o": 4.25,
+  "c": 0.15
+ },
+ "meta/muse-spark-1.2": {
+  "i": 1.25,
+  "o": 4.25,
+  "c": 0.15
+ },
+ "meta/muse-spark-1.2-contributor": {
+  "i": 0.1,
+  "o": 0.2,
+  "c": 0.002
+ },
+ "meta/muse-spark-1.3": {
+  "i": 1.25,
+  "o": 4.25,
+  "c": 0.15
+ },
+ "meta/muse-spark-1.3-contributor": {
+  "i": 0.1,
+  "o": 0.2,
+  "c": 0.002
+ },
+ "meta/muse-spark-open": {
+  "i": 1.25,
+  "o": 4.25,
+  "c": 0.15
+ },
+ "meta/muse-wonder-1.0": {
+  "i": 1.25,
+  "o": 4.25,
+  "c": 0.15
+ },
+ "xai/grok-4.5": {
+  "i": 2,
+  "o": 6,
+  "c": 0.3
+ },
+ "xai/grok-4.6": {
+  "i": 2,
+  "o": 6,
+  "c": 0.5
+ },
+ "xai/grok-4.7": {
+  "i": 2,
+  "o": 6,
+  "c": 0.5
+ },
+ "mistral/mistral-large-4": {
+  "i": 1.36,
+  "o": 4.18,
+  "c": 0.14
+ },
+ "_meta": {
+  "version": "v2026.10.28",
+  "updated": "2026-10-28",
+  "source": "curated static snapshot \u2014 verify against provider dashboards"
+ }
+}
