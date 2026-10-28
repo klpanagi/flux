@@ -133,6 +133,20 @@ serve({
       catch (e) { return Response.json({ error: e.message }, { status: 500 }); }
     }
 
+    const STATIC_MIME: Record<string, string> = {
+      "/styles.css": "text/css",
+      "/app.js": "text/javascript",
+      "/data/pricing.json": "application/json",
+      "/data/benchmarks.json": "application/json",
+    };
+    if (url.pathname in STATIC_MIME) {
+      const file = Bun.file(new URL("../public" + url.pathname, import.meta.url));
+      if (await file.exists()) return new Response(file, { headers: { "Content-Type": STATIC_MIME[url.pathname] } });
+      const fallback = Bun.file("./public" + url.pathname);
+      if (await fallback.exists()) return new Response(fallback, { headers: { "Content-Type": STATIC_MIME[url.pathname] } });
+      return new Response("Not found", { status: 404 });
+    }
+
     if (url.pathname === "/" || url.pathname === "/index.html") {
       const file = Bun.file(new URL("./public/index.html", import.meta.url));
       if (await file.exists()) return new Response(file, { headers: { "Content-Type": "text/html" } });
