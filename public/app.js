@@ -339,7 +339,18 @@ let subs=[], allModels=[], sortCol='name', sortDir='asc', filterText='', filterP
     }
     function removeCmpSlot(i){
       const sel=document.getElementById('cmp-'+i); if(sel&&sel.parentElement)sel.parentElement.remove();
-      document.querySelectorAll('#cmp-slots .cmp-slot select').forEach((s,idx)=>{s.id='cmp-'+idx;});
+      document.querySelectorAll('#cmp-slots .cmp-slot').forEach((slot,idx)=>{
+        const s=slot.querySelector('select');
+        const lbl=slot.querySelector('label');
+        if(s){s.id='cmp-'+idx;s.setAttribute('data-cmp-slot',idx);s.setAttribute('aria-label','Compare slot '+(idx+1));}
+        if(lbl){lbl.htmlFor='cmp-'+idx;lbl.textContent='Compare slot '+(idx+1);}
+        let btn=slot.querySelector('button');
+        if(idx<2){ if(btn)btn.remove(); }
+        else{
+          if(!btn){btn=document.createElement('button');btn.className='ghost';btn.type='button';slot.appendChild(btn);}
+          btn.setAttribute('data-action','remove-slot');btn.setAttribute('data-index',idx);btn.setAttribute('aria-label','Remove compare slot '+(idx+1));btn.textContent='✕';
+        }
+      });
       onCmpChange();
     }
     function onCmpChange(){
