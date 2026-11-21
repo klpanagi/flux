@@ -9,10 +9,14 @@
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="container">
     <header>
       <h1>Subscription Monitor</h1>
-      <button id="theme-toggle" class="ghost theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark theme" title="Toggle theme">◐</button>
+      <button id="theme-toggle" class="ghost theme-toggle" type="button" onclick="toggleTheme()"
+              aria-label="Dark theme active, switch to light" aria-pressed="false" title="Toggle theme">
+        <span aria-hidden="true">◐</span>
+      </button>
       <div class="tabs" role="tablist" aria-label="Main sections">
         <button class="tab active" role="tab" id="tab-portfolio" aria-selected="true" aria-controls="portfolio" data-tab="portfolio" onclick="showTab('portfolio')">Portfolio</button>
         <button class="tab" role="tab" id="tab-subscriptions" aria-selected="false" aria-controls="subscriptions" data-tab="subscriptions" tabindex="-1" onclick="showTab('subscriptions')">Subscriptions</button>
@@ -23,36 +27,51 @@
         <button class="tab" role="tab" id="tab-compare" aria-selected="false" aria-controls="compare" data-tab="compare" tabindex="-1" onclick="showTab('compare')">Compare</button>
       </div>
     </header>
-    <div id="portfolio" role="tabpanel" aria-labelledby="tab-portfolio" tabindex="0" class="tab-content"><div id="portfolio-content"></div></div>
-    <div id="subscriptions" role="tabpanel" aria-labelledby="tab-subscriptions" tabindex="0" class="tab-content hidden">
-      <div class="card" style="margin-bottom:24px">
-        <h3 style="margin-bottom:16px">Add Subscription</h3>
-        <form class="form" onsubmit="addSub();return false;">
-          <div><label for="provider">Provider</label><select id="provider"><option value="opencode-go">OpenCode Go</option><option value="commandcode">CommandCode GOAT</option></select>
-          <div><label for="label">Label</label><input id="label" type="text" placeholder="Label (e.g. Work account)" autocomplete="off" /></div>
-          <div><label for="apiKey">API Key</label><input id="apiKey" placeholder="API Key" type="password" required autocomplete="off" /></div>
-          <button type="submit">Add</button>
-        </form>
+    <main id="main" tabindex="-1">
+      <div id="portfolio" role="tabpanel" aria-labelledby="tab-portfolio" tabindex="0" class="tab-content"><div id="portfolio-content"></div></div>
+      <div id="subscriptions" role="tabpanel" aria-labelledby="tab-subscriptions" tabindex="0" class="tab-content hidden">
+        <div class="card stack-shell">
+          <h2 class="card-title">Add Subscription</h2>
+          <form class="form" onsubmit="addSub();return false;">
+            <div class="form-group">
+              <label for="provider">Provider</label>
+              <select id="provider"><option value="opencode-go">OpenCode Go</option><option value="commandcode">CommandCode GOAT</option></select>
+            </div>
+            <div class="form-group">
+              <label for="label">Label</label>
+              <input id="label" type="text" placeholder="Label (e.g. Work account)" autocomplete="off" />
+            </div>
+            <div class="form-group">
+              <label for="apiKey">API Key</label>
+              <input id="apiKey" placeholder="API Key" type="password" required autocomplete="off" />
+            </div>
+            <button type="submit">Add</button>
+          </form>
+        </div>
+        <div id="subs-list"></div>
       </div>
-      <div id="subs-list"></div>
-    </div>
-    <div id="models" role="tabpanel" aria-labelledby="tab-models" tabindex="0" class="tab-content hidden">
-      <div class="toolbar">
-        <label for="model-search" class="small">Search</label><input id="model-search" placeholder="Search models..." oninput="debouncedFilterModels()" aria-label="Search models" />
-        <label for="provider-filter" class="small">Provider</label><select id="provider-filter" onchange="filterModels()" aria-label="Filter by provider"><option value="all">All Providers</option><option value="opencode-go">OpenCode Go</option><option value="commandcode">CommandCode</option></select>
-        <label for="sort-by" class="small">Sort by</label><select id="sort-by" onchange="this.dataset.touched='1';sortModels()" aria-label="Sort by"><option value="name">Sort: Name</option><option value="input">Sort: Input Price</option><option value="output">Sort: Output Price</option><option value="context">Sort: Context Window</option></select>
-        <label for="sort-dir" class="small">Direction</label><select id="sort-dir" onchange="this.dataset.touched='1';sortModels()" aria-label="Sort direction"><option value="asc">Ascending</option><option value="desc">Descending</option></select>
+      <div id="models" role="tabpanel" aria-labelledby="tab-models" tabindex="0" class="tab-content hidden">
+        <div class="toolbar">
+          <label for="model-search" class="small">Search</label>
+          <input id="model-search" placeholder="Search models..." oninput="debouncedFilterModels()" />
+          <label for="provider-filter" class="small">Provider</label>
+          <select id="provider-filter" onchange="filterModels()"><option value="all">All Providers</option><option value="opencode-go">OpenCode Go</option><option value="commandcode">CommandCode</option></select>
+          <label for="sort-by" class="small">Sort by</label>
+          <select id="sort-by" onchange="this.dataset.touched='1';sortModels()"><option value="name">Sort: Name</option><option value="input">Sort: Input Price</option><option value="output">Sort: Output Price</option><option value="context">Sort: Context Window</option></select>
+          <label for="sort-dir" class="small">Direction</label>
+          <select id="sort-dir" onchange="this.dataset.touched='1';sortModels()"><option value="asc">Ascending</option><option value="desc">Descending</option></select>
+        </div>
+        <div id="models-count" class="small label u-mb-2" role="status" aria-live="polite"></div><div id="models-content"></div>
       </div>
-      <div id="models-count" class="small label" role="status" aria-live="polite" style="margin-bottom:8px"></div><div id="models-content"></div>
-    </div>
-    <div id="calculator" role="tabpanel" aria-labelledby="tab-calculator" tabindex="0" class="tab-content hidden"><div id="calculator-content"></div></div>
-    <div id="alerts" role="tabpanel" aria-labelledby="tab-alerts" tabindex="0" class="tab-content hidden"><div id="alerts-content"></div></div>
-    <div id="history" role="tabpanel" aria-labelledby="tab-history" tabindex="0" class="tab-content hidden"><div id="history-content"></div></div>
-    <div id="compare" role="tabpanel" aria-labelledby="tab-compare" tabindex="0" class="tab-content hidden"><div id="compare-content"></div></div>
+      <div id="calculator" role="tabpanel" aria-labelledby="tab-calculator" tabindex="0" class="tab-content hidden"><div id="calculator-content"></div></div>
+      <div id="alerts" role="tabpanel" aria-labelledby="tab-alerts" tabindex="0" class="tab-content hidden"><div id="alerts-content"></div></div>
+      <div id="history" role="tabpanel" aria-labelledby="tab-history" tabindex="0" class="tab-content hidden"><div id="history-content"></div></div>
+      <div id="compare" role="tabpanel" aria-labelledby="tab-compare" tabindex="0" class="tab-content hidden"><div id="compare-content"></div></div>
+    </main>
   </div>
   <div id="toast-root" aria-live="polite"></div>
   <div id="modal-root"></div>
-  <button class="refresh-btn" id="refresh-fab" onclick="refreshAll()" title="Refresh" aria-label="Refresh all data">↻</button>
+  <button class="refresh-btn" id="refresh-fab" type="button" onclick="refreshAll()" title="Refresh" aria-label="Refresh all data"><span aria-hidden="true">↻</span></button>
   <script src="/app.js" defer></script>
 </body>
 </html>
